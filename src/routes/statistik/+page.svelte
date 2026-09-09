@@ -4,9 +4,9 @@
 
 	let { data } = $props<{ data: PageData }>();
 
-	let totalStr = $derived(data.statistikList?.find(s => s.key === 'total_penduduk')?.value || '2.955 Jiwa');
-	let maleStr = $derived(data.statistikList?.find(s => s.key === 'laki_laki')?.value || '1.450 Jiwa');
-	let femaleStr = $derived(data.statistikList?.find(s => s.key === 'perempuan')?.value || '1.505 Jiwa');
+	let totalStr = $derived(data.statistikList?.find((s: any) => s.key === 'total_penduduk')?.value || '2.955 Jiwa');
+	let maleStr = $derived(data.statistikList?.find((s: any) => s.key === 'laki_laki')?.value || '1.450 Jiwa');
+	let femaleStr = $derived(data.statistikList?.find((s: any) => s.key === 'perempuan')?.value || '1.505 Jiwa');
 
 	function parseNum(val: string): number {
 		const clean = val.replace(/[^0-9]/g, '');

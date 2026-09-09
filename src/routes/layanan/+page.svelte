@@ -147,23 +147,6 @@
 
 					<div class="space-y-4">
 						<a
-							href="tel:110"
-							class="group flex items-center justify-between rounded-xl border border-rose-50 bg-white p-4 shadow-sm transition-colors hover:border-rose-200"
-						>
-							<div>
-								<div class="mb-0.5 text-xs font-semibold tracking-wider text-rose-600">
-									POLISI BUNDER
-								</div>
-								<div class="font-bold text-gray-900">110 / 021-12345</div>
-							</div>
-							<div
-								class="flex h-10 w-10 items-center justify-center rounded-full bg-rose-100 transition-colors group-hover:bg-rose-200"
-							>
-								<Phone class="h-4 w-4 text-rose-700" />
-							</div>
-						</a>
-
-						<a
 							href="tel:113"
 							class="group flex items-center justify-between rounded-xl border border-rose-50 bg-white p-4 shadow-sm transition-colors hover:border-rose-200"
 						>
@@ -181,14 +164,14 @@
 						</a>
 
 						<a
-							href="tel:08129999888"
+							href="tel:085196157757"
 							class="group flex items-center justify-between rounded-xl border border-rose-50 bg-white p-4 shadow-sm transition-colors hover:border-rose-200"
 						>
 							<div>
 								<div class="mb-0.5 text-xs font-semibold tracking-wider text-rose-600">
 									AMBULANS DESA
 								</div>
-								<div class="font-bold text-gray-900">0812-9999-888</div>
+								<div class="font-bold text-gray-900">0851-9615-7757</div>
 							</div>
 							<div
 								class="flex h-10 w-10 items-center justify-center rounded-full bg-rose-100 transition-colors group-hover:bg-rose-200"

@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Image as ImageIcon, Sparkles, Calendar } from 'lucide-svelte';
+	import { Image as ImageIcon, Sparkles, Calendar, PlayCircle } from 'lucide-svelte';
 	import type { PageData } from './$types';
 
 	let { data } = $props<{ data: PageData }>();
 </script>
 
 <svelte:head>
-	<title>Galeri Foto - Desa Bunder</title>
+	<title>Galeri - Desa Bunder</title>
 </svelte:head>
 
 <div class="mx-auto max-w-7xl space-y-12 px-4 py-12 sm:px-6 lg:px-8">
@@ -16,7 +16,7 @@
 			<span class="inline-flex items-center gap-2 rounded-full bg-blue-700/50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-blue-100 backdrop-blur-md mb-4 border border-blue-400/30">
 				<Sparkles class="h-3.5 w-3.5" /> Koleksi Momen & Kegiatan
 			</span>
-			<h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4">Galeri Foto Desa Bunder</h1>
+			<h1 class="text-3xl md:text-5xl font-black tracking-tight mb-4">Galeri Desa Bunder</h1>
 			<p class="text-blue-100 text-base md:text-lg leading-relaxed font-light">
 				Dokumentasi visual keindahan, potensi, dan beragam kegiatan kemasyarakatan di Desa Bunder.
 			</p>
@@ -24,6 +24,30 @@
 
 		<!-- Decor Blobs -->
 		<div class="absolute top-0 right-0 h-96 w-96 translate-x-1/3 -translate-y-1/2 rounded-full bg-blue-500/20 blur-3xl"></div>
+	</div>
+
+	<!-- Video Profil Highlight -->
+	<div class="rounded-3xl bg-slate-900 p-6 md:p-10 text-white shadow-xl border border-white/10 overflow-hidden">
+		<div class="flex items-center gap-2 text-blue-400 font-bold uppercase text-xs tracking-wider mb-4">
+			<PlayCircle class="h-5 w-5" /> Video Profil Utama
+		</div>
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+			<div class="lg:col-span-4 space-y-3">
+				<h2 class="text-2xl font-bold text-white">Video Profil Resmi Desa Bunder</h2>
+				<p class="text-sm text-gray-300 leading-relaxed">
+					Saksikan gambaran menyeluruh tentang keasrian, sejarah, budaya, dan potensi unggulan Desa Bunder dalam bentuk tayangan video.
+				</p>
+			</div>
+			<div class="lg:col-span-8">
+				<div class="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black border border-white/10">
+					<video controls preload="metadata" poster="/eduwisatagaram.jpg" class="w-full h-full object-cover">
+						<source src="/videoprofil.MOV" type="video/mp4" />
+						<source src="/videoprofil.MOV" type="video/quicktime" />
+						Browser Anda tidak mendukung pemutar video HTML5.
+					</video>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- Photos Grid -->

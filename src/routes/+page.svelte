@@ -1,8 +1,23 @@
 <script lang="ts">
-	import { ShieldCheck, Map, Users, ChevronRight, FileText, Calendar, Eye, Siren, ShieldPlus, CheckCircle2, Banknote, Store, PlayCircle, Target, History, MapPin, Check, PieChart, TrendingUp, Home, FileBadge, MessageSquare, Megaphone, Image as ImageIcon } from 'lucide-svelte';
+	import { ShieldCheck, Map, Users, ChevronRight, FileText, Calendar, Eye, Siren, ShieldPlus, CheckCircle2, Banknote, Store, PlayCircle, Target, History, MapPin, Check, PieChart, TrendingUp, Home, FileBadge, MessageSquare, Megaphone, Image as ImageIcon, X, Play } from 'lucide-svelte';
 	import type { PageData } from './$types';
 
 	let { data } = $props<{ data: PageData }>();
+	let isVideoOpen = $state(false);
+
+	function openVideo() {
+		isVideoOpen = true;
+	}
+
+	function closeVideo() {
+		isVideoOpen = false;
+	}
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key === 'Escape' && isVideoOpen) {
+			closeVideo();
+		}
+	}
 
 	function reveal(node: HTMLElement) {
 		const observer = new IntersectionObserver(
@@ -34,12 +49,19 @@
 
 <!-- Hero Full Width -->
 <section class="relative h-screen min-h-[600px] w-full overflow-hidden flex items-center justify-center bg-slate-900">
-	<!-- Background Video/Image -->
-	<img
-		src="https://images.unsplash.com/photo-1590242491689-08207906d0be?auto=format&fit=crop&q=80&w=1920"
-		alt="Background Desa"
-		class="absolute inset-0 h-full w-full object-cover opacity-40 transition-transform duration-[20s] hover:scale-110 ease-out"
-	/>
+	<!-- Background Video -->
+	<video
+		autoplay
+		loop
+		muted
+		playsinline
+		preload="auto"
+		class="absolute inset-0 h-full w-full object-cover opacity-50 transition-all duration-700"
+		poster="/eduwisatagaram.jpg"
+	>
+		<source src="/videoprofil.MOV" type="video/mp4" />
+		<source src="/videoprofil.MOV" type="video/quicktime" />
+	</video>
 	
 	<!-- Tech/Futuristic Overlay (inspired by the reference) -->
 	<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-20">
@@ -52,28 +74,58 @@
 	<!-- Overlay Gradient -->
 	<div class="absolute inset-0 bg-gradient-to-b from-slate-900/20 via-transparent to-slate-900"></div>
 
-	<!-- Hero Content -->
-	<div class="relative z-10 text-center text-white px-4 flex flex-col items-center mt-12">
-		<div class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 backdrop-blur-md px-4 py-1.5 text-xs font-medium text-white mb-6 uppercase tracking-widest">
-			Selamat Datang di
-		</div>
-		
-		<h1 class="text-6xl md:text-8xl font-black tracking-tight mb-4 drop-shadow-2xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-200">
-			DESA BUNDER
-		</h1>
-		<p class="text-lg md:text-xl font-light mb-12 opacity-80 drop-shadow-md max-w-2xl">
-			Kecamatan Pademawu, Kabupaten Pamekasan, Jawa Timur. <br/> Desa pendidikan yang asri, maju, dan harmonis.
-		</p>
-		
+	<!-- Hero Center Content (Play Button) -->
+	<div class="relative z-10 text-center text-white px-4 flex flex-col items-center">
 		<!-- Play Button -->
 		<div class="flex flex-col items-center">
-			<button class="group relative flex items-center justify-center h-20 w-20 rounded-full border border-white/30 bg-white/10 backdrop-blur-md transition-all hover:bg-white/20 hover:scale-105 hover:border-blue-400">
-				<PlayCircle class="h-10 w-10 text-white transition-transform group-hover:scale-110 group-hover:text-blue-400" />
+			<button 
+				onclick={openVideo}
+				type="button"
+				class="group relative flex items-center justify-center h-24 w-24 rounded-full border border-white/40 bg-white/15 backdrop-blur-md transition-all hover:bg-white/30 hover:scale-110 hover:border-blue-400 cursor-pointer shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+				aria-label="Tonton Video Profil Desa Bunder"
+			>
+				<PlayCircle class="h-12 w-12 text-white transition-transform group-hover:scale-110 group-hover:text-blue-400" />
 				<!-- Ping effect -->
-				<div class="absolute inset-0 rounded-full border border-white/50 animate-ping opacity-20 group-hover:border-blue-400"></div>
+				<div class="absolute inset-0 rounded-full border border-white/60 animate-ping opacity-25 group-hover:border-blue-400"></div>
 			</button>
-			<p class="mt-5 text-xs font-bold tracking-[0.25em] uppercase text-white/60">Tonton Video Profil</p>
-			<p class="mt-1 text-[10px] text-white/40 italic">(Video menyusul)</p>
+			<button 
+				onclick={openVideo}
+				type="button"
+				class="mt-4 text-xs font-bold tracking-[0.25em] uppercase text-white/90 hover:text-white transition-colors cursor-pointer"
+			>
+				Tonton Fullscreen & Suara
+			</button>
+			<p class="mt-1 text-[10px] text-blue-300 font-medium">(Klik untuk memutar penuh dengan suara)</p>
+		</div>
+	</div>
+
+	<!-- Bottom Right Glass Card Badge (Desain Kustom Desa Bunder) -->
+	<div class="absolute bottom-6 right-6 md:bottom-10 md:right-10 z-20">
+		<div class="relative overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-5 md:p-6 backdrop-blur-xl shadow-2xl flex items-center gap-5 md:gap-6 group hover:bg-white/15 transition-all">
+			<!-- Glass shine effect -->
+			<div class="absolute -top-16 -left-16 h-36 w-36 rounded-full bg-white/20 blur-3xl pointer-events-none"></div>
+			
+			<!-- Left side -->
+			<div class="flex flex-col text-left">
+				<span class="text-white/90 text-sm md:text-lg font-medium tracking-wide">Desa Bunder</span>
+				<span class="text-yellow-400 font-bold text-xs md:text-sm tracking-wider">Pademawu, Pamekasan</span>
+			</div>
+
+			<!-- Vertical Divider -->
+			<div class="h-10 md:h-12 w-[1.5px] bg-white/30 shrink-0"></div>
+
+			<!-- Right side -->
+			<div class="flex flex-col text-left">
+				<h1 class="text-3xl md:text-5xl font-black tracking-tight text-white drop-shadow-md leading-none">
+					DESA BUNDER
+				</h1>
+				<div class="mt-2 flex items-center gap-2 text-xs md:text-sm font-semibold text-white/90">
+					<span>#DesaPendidikan</span>
+					<span class="rounded-md bg-yellow-400 px-2 py-0.5 font-extrabold text-slate-950 text-[11px] uppercase tracking-wider shadow-sm">
+						Masa Depan
+					</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
@@ -213,12 +265,12 @@
 			</a>
 			<!-- UMKM 1 -->
 			<a href="/potensi-umkm" class="group relative overflow-hidden rounded-2xl aspect-[4/3]">
-				<img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&q=80&w=600" alt="Kerajinan" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+				<img src="/tahu-bakso.png" alt="Tahu Bakso" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
 				<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
 				<div class="absolute bottom-6 left-6 right-6">
 					<span class="inline-block px-2 py-1 bg-orange-500 text-white text-xs font-bold rounded mb-2">UMKM Lokal</span>
-					<h3 class="text-xl font-bold text-white mb-1">Aneka Jajanan</h3>
-					<p class="text-sm text-gray-300 line-clamp-2">Produk olahan makanan ringan hasil kreativitas ibu-ibu warga desa.</p>
+					<h3 class="text-xl font-bold text-white mb-1">Tahu Bakso</h3>
+					<p class="text-sm text-gray-300 line-clamp-2">Olahan tahu isi adonan bakso olahan khas dan lezat hasil usaha warga desa.</p>
 				</div>
 			</a>
 		</div>
@@ -459,18 +511,11 @@
 					</p>
 
 					<div class="space-y-3">
-						<a href="tel:081234567890" class="flex items-center gap-3 rounded-2xl bg-black/20 p-3 backdrop-blur-sm transition-colors hover:bg-black/30">
+						<a href="tel:085196157757" class="flex items-center gap-3 rounded-2xl bg-black/20 p-3 backdrop-blur-sm transition-colors hover:bg-black/30">
 							<div class="rounded-xl bg-white text-rose-600 p-2"><Siren class="h-5 w-5" /></div>
 							<div>
 								<div class="text-xs text-rose-100">Ambulans Desa</div>
-								<div class="text-sm font-bold">0812-3456-XXXX</div>
-							</div>
-						</a>
-						<a href="tel:081278901234" class="flex items-center gap-3 rounded-2xl bg-black/20 p-3 backdrop-blur-sm transition-colors hover:bg-black/30">
-							<div class="rounded-xl bg-white text-rose-600 p-2"><ShieldPlus class="h-5 w-5" /></div>
-							<div>
-								<div class="text-xs text-rose-100">Kamtibmas</div>
-								<div class="text-sm font-bold">0812-7890-XXXX</div>
+								<div class="text-sm font-bold">0851-9615-7757</div>
 							</div>
 						</a>
 					</div>
@@ -479,6 +524,58 @@
 		</div>
 	</section>
 </div>
+
+<!-- Video Modal Overlay -->
+<svelte:window onkeydown={handleKeydown} />
+
+{#if isVideoOpen}
+	<div 
+		class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 animate-fade-in"
+		onclick={closeVideo}
+		role="dialog"
+		aria-modal="true"
+		tabindex="-1"
+	>
+		<div 
+			class="relative w-full max-w-5xl rounded-3xl bg-slate-900 overflow-hidden shadow-2xl border border-white/10"
+			onclick={(e) => e.stopPropagation()}
+			onkeydown={(e) => e.stopPropagation()}
+			role="presentation"
+		>
+			<!-- Header Modal -->
+			<div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-slate-900/80">
+				<div class="flex items-center gap-3">
+					<div class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white">
+						<Play class="h-4 w-4 fill-current ml-0.5" />
+					</div>
+					<h3 class="text-lg font-bold text-white">Video Profil Desa Bunder</h3>
+				</div>
+				<button 
+					onclick={closeVideo}
+					type="button"
+					class="rounded-full p-2 text-gray-400 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
+					aria-label="Tutup Video"
+				>
+					<X class="h-6 w-6" />
+				</button>
+			</div>
+
+			<!-- Video Player Container -->
+			<div class="relative aspect-video bg-black flex items-center justify-center">
+				<video 
+					controls 
+					autoplay 
+					preload="metadata"
+					class="w-full h-full object-contain"
+				>
+					<source src="/videoprofil.MOV" type="video/mp4" />
+					<source src="/videoprofil.MOV" type="video/quicktime" />
+					Browser Anda tidak mendukung elemen pemutar video HTML5.
+				</video>
+			</div>
+		</div>
+	</div>
+{/if}
 
 <style>
 	:global(.reveal) {

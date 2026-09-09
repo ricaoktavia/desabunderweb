@@ -9,7 +9,8 @@
 		Shield,
 		BookOpen,
 		Award,
-		Star
+		Star,
+		PlayCircle
 	} from 'lucide-svelte';
 	import type { PageData } from './$types';
 
@@ -94,6 +95,42 @@
 			</div>
 			<div class="relative rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
 				<img src="/sawahh.jpeg" alt="Sawah Desa Bunder" class="w-full h-full min-h-[300px] object-cover hover:scale-105 transition-transform duration-700" />
+			</div>
+		</div>
+
+		<!-- Video Profil Section -->
+		<div class="mb-20 animate-fade-in-up delay-350">
+			<div class="rounded-[3rem] bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 p-8 md:p-12 text-white shadow-2xl border border-white/10 relative overflow-hidden">
+				<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-blue-600/20 blur-3xl"></div>
+				
+				<div class="relative z-10 grid lg:grid-cols-12 gap-8 items-center">
+					<div class="lg:col-span-5 space-y-4">
+						<span class="inline-flex items-center gap-2 rounded-full bg-blue-800/50 border border-blue-700/50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-blue-200 backdrop-blur-md">
+							<PlayCircle class="h-4 w-4 text-blue-400" /> Video Dokumenter
+						</span>
+						<h2 class="text-3xl md:text-4xl font-black text-white leading-tight">
+							Video Profil <br/><span class="text-blue-400">Desa Bunder</span>
+						</h2>
+						<p class="text-blue-100/80 leading-relaxed text-base">
+							Saksikan keindahan alam, kehidupan kemasyarakatan, serta potensi pendidikan dan ekonomi yang ada di Desa Bunder melalui tayangan video profil resmi ini.
+						</p>
+					</div>
+					
+					<div class="lg:col-span-7">
+						<div class="relative aspect-video rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black">
+							<video 
+								controls 
+								preload="metadata" 
+								class="w-full h-full object-cover"
+								poster="/eduwisatagaram.jpg"
+							>
+								<source src="/videoprofil.MOV" type="video/mp4" />
+								<source src="/videoprofil.MOV" type="video/quicktime" />
+								Browser Anda tidak mendukung pemutar video HTML5.
+							</video>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
